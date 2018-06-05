@@ -1,3 +1,4 @@
+package stanford_1;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,6 +22,7 @@ public class Aspect implements Runnable {
 	private ArrayList<OpinionWord> Aopinionwords ;
 	private static File reviewFile;
 	BufferedReader br;
+	private ArrayList<String> aspesenti;
 
 	private ScoreCalculator sc;
 	private static String grammar = "edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz";
@@ -34,12 +36,24 @@ public class Aspect implements Runnable {
 		this.aspectName = aspectName;
 
 		opinionWords = new ArrayList<String>();
+		aspesenti = new ArrayList<String>();
 		Aopinionwords = new ArrayList<OpinionWord>();
 		score = 0.0;
 		total = 0.0;
-		sc = new ScoreCalculator("C:\\Users\\Helmi\\workspace\\SentimentAnalysisBeta\\sentiword.txt");
+		sc = new ScoreCalculator("/home/emily/workspace/Extraction_2/sentiword.txt");
 		
 	}
+	public ArrayList<String> getAspect(){
+		for(OpinionWord opinion:Aopinionwords)
+			  aspesenti.add(opinion.getaspect());
+	       return  aspesenti;
+	}
+	public ArrayList<String> getSenti(){
+		for(OpinionWord opinion:Aopinionwords)
+			aspesenti.add(opinion.getSentiment());
+	       return  aspesenti;
+	}
+
 
 	public String getAspectName() {
 		return aspectName;
@@ -63,13 +77,13 @@ public class Aspect implements Runnable {
 				// upper case negation present
 				tempScore = -(o.value);
 				//tempScore = Math.ceil(tempScore);
-				System.out.println("WORD -- " + o.Oword + " " + o.value);
+				System.out.println("WORD -- " + o.word + " " + o.value);
 				System.out.println(o.toString());
 
 			} else {
 				tempScore = o.value;
 				//tempScore = Math.ceil(tempScore);
-				System.out.println("WORD -- " + o.Oword + " " + o.value);
+				System.out.println("WORD -- " + o.word + " " + o.value);
                 System.out.println(o.toString());
 			}
 			sum += tempScore;
@@ -413,4 +427,4 @@ public class Aspect implements Runnable {
 				Aopinionwords.add(new OpinionWord(aspect, word, pos, negation));
 
 		}}
-	}
+}

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 
 public class CreateTriple {
-	private String texte;
+	private String texte="";
 	private String asp;
 	private ArrayList<String> liste;
 	private String noun;
@@ -19,29 +19,28 @@ public class CreateTriple {
 		
 		Scanner fr=new Scanner(new FileReader("trial.txt"));
 		while(fr.hasNext()){
-		texte=fr.nextLine();
-		asp=AspectMain.getnoun().get(1);
+	     texte+=fr.nextLine()+"--";
+		}
+		System.out.println(texte);
+		asp=AspectMain.getAsp();
 		noun =AspectMain.getnoun().get(0);
-		//senti=AspectMain.getaspects();
-		ls=new ArrayList<String>();
-		liste=new ArrayList<String>();
-		}					
+		senti=AspectMain.getSent();					
 				
 }
 	
-public String getTexte(){
-	return texte;
+public String[] getTexte(){
+	return texte.split("--");
 }
-public String getAsp(){
-	return asp;
+public String[] getAsp(){
+	return asp.split(" ");
 }
 public String getType() throws IOException {
 	
 	return noun;
 	}
-/*public String getSentis(){
-	return senti;
-}*/
+public String[] getSentis(){
+	return senti.split(" ");
+}
 
 	
 }

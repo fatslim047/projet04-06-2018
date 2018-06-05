@@ -19,9 +19,9 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 
 public class AspectM {
-	 public static void main(String[]args) throws IOException
+	 public  static void main (String[]args) throws IOException
      {            
-  String str= AspectMain.getnoun().get(0);
+  String str= "Samsung";
   String queryString = "PREFIX pr:<http://xmlns.com/foaf/0.1/>\n" +
           "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"+
           "SELECT DISTINCT ?phone ?label WHERE {" + 
@@ -29,7 +29,7 @@ public class AspectM {
           "?phone <http://dbpedia.org/property/type> <http://dbpedia.org/resource/Smartphone>"+
           "FILTER (lang(?label) = 'en') . "+
           "?label <bif:contains> \""+str+"\" ."+
-          "}LIMIT 100";
+          "}LIMIT 1";
 
   Query query = QueryFactory.create(queryString);        
   QueryExecution qexec = QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", query);
