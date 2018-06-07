@@ -40,7 +40,6 @@ public class Aspect implements Runnable {
 		Aopinionwords = new ArrayList<OpinionWord>();
 		score = 0.0;
 		total = 0.0;
-		sc = new ScoreCalculator("/home/emily/workspace/Extraction_2/sentiword.txt");
 		
 	}
 	public ArrayList<String> getAspect(){
